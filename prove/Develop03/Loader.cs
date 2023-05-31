@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+ 
 class Loader
 {
     private Dictionary<string, string> csvData;
