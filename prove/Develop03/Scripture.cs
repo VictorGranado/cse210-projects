@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Develop03
 {
     class Scripture
     {    
         private List<Word> _words = new List<Word>();
+        private List<int> _replacedWordsIndex = new List<int>();
 
-        //LastHiddenWord index (tbd 😭)
-        private List<Word> _hiddenWordsIndex = new List<Word>();
+        //these values will be referenced in Program to keep track of progress
+        public int totalWords, hiddenWords = 0;
 
-        Scripture(List<string> words)
+        public Scripture(List<string> words)
         {
             //create a new instance of Word
             //for each string from the scripture
@@ -20,12 +20,13 @@ namespace Develop03
             {
                 Word newWord = new Word(word);
                 _words.Add(newWord);
+                totalWords ++;
             }
         }
 
+        //return the current state of the scripture as a string
         public string AsString()
         {
-            //'print' new scripture with changes
             string currentScripture = "";
             foreach (Word word in _words)
             {
@@ -35,109 +36,40 @@ namespace Develop03
             return currentScripture;
         }
 
+        //blerp
         public void HideRandomWord()
         {
-            //generate random number
+            //choose a word at random that hasn't already been hidden
             Random random = new Random();
-            int randomIndex = random.Next(0, _words.Count);
-
-            //check randomly selected word against words that
-            //have already been hidden. If already hidden, generate
-            //new number and start again.
-            foreach (Word word in _hiddenWordsIndex)
+            int index;
+            do 
             {
-                while (word == _words[randomIndex])
-                {                    
-                    if (word != _words[randomIndex])
-                    {
-                        _words[randomIndex].Hide();
-                        _hiddenWordsIndex.Add(_words[randomIndex]);
-                        break;
-                    }
+                index = random.Next(_words.Count);
+            } while (_replacedWordsIndex.Contains(index));
 
-                    else 
-                    {                        
-                        randomIndex = random.Next(0, _words.Count);
-                    }
-                }
-            }
+            //find the word, then run Word.Hide() to turn it into _ _ _ 
+            _words[index].Hide();
+
+            //add reference of the word to the index
+            _replacedWordsIndex.Add(index);
+            hiddenWords ++;
         }
 
+
+        //blerps
         public void ShowLastHiddenWord()
         {
-            int hiddenWordPlacement = _hiddenWordsIndex.Count - 1;
-            
-            //_words.Find(_hiddenWordsIndex.Last());
-
-
-            
-            _hiddenWordsIndex.RemoveAt(hiddenWordPlacement);
-        }
-
-
-
-    /*
-        private bool _isHidden;
-        private List<Reference> _verse = new List<Reference>();
-        public Scripture(List<string> entireScripture)
-        {
-            foreach (string newVerse in entireScripture)
+            if (_replacedWordsIndex.Count > 0)
             {
-                Reference verse = new Reference(newVerse);
-                _verse.Add(verse);
+                //find the word, then run Word.Show() to flip it back to it's original state
+                int index = _replacedWordsIndex[_replacedWordsIndex.Count - 1];
+                _words[index].Show();
+
+                //remove reference of the word from the index
+                _replacedWordsIndex.Remove(index);
+                hiddenWords --;
             }
         }
-        public void Display()
-        {
-            Console.WriteLine("3 Nephi 3:6-8");
-            foreach(Reference verse in _verse)
-            {
-                verse.Display();
-                //return verse;
-                //Console.Write(verse);
-            }
-            //now run code to hide 3 words
-            HideVerse();
-            HideVerse();
-            HideVerse();
-        }
-        public void HideVerse()
-        {
-            //count the amount of verses that aren't hidden
-            int verseCount = 0;
-            foreach (Reference verse in _verse)
-            {
-                //is verse not hidden yet? Count goes up.
-                if (!verse.IsItHidden())
-                {
-                    verseCount++;
-                }
-            }
-            //choose random verses to hide
-            //if the amount of verses that aren't hidden is an actual amount, run the code!
-            if (verseCount > 0)
-            {
-                Random randomGenerator = new Random();
-                //choose a number between 0 and the amount of verses
-                int index = randomGenerator.Next(0, _verse.Count);
-                if (!_verse[index].IsItHidden())
-                {
-                    _verse[index].HideWord();
-                }
-                else
-                {
-                    HideVerse();
-                }
-            }
-            else 
-            {
-                _isHidden = true;
-            }
-        }
-        public bool IsItHidden()
-        {
-            return _isHidden;
-        }
-    */
+         
     }
 }
