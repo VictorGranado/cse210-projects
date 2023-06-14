@@ -1,21 +1,11 @@
+using System;
+
 namespace Develop02
 {
     public class Entry
     {
-        public string prompt;
-        public string response;
-        public string date;
-
-        public string GetAsString()
-        {
-            return $"{date}\n{prompt}\n{response}\n";
-        }
-        public void Store(string prompt, string response, string date)
-        {
-            this.prompt = prompt;
-            this.response = response;
-            this.date = date;
-        }
+        public string Prompt { get; set; }  // The prompt for the entry
+        public string Response { get; set; }  // The response given by the user
+        public DateTime Date { get; set; }  // The date and time when the entry was created
     }
-
 }
