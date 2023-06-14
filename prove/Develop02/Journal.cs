@@ -6,7 +6,7 @@ namespace Develop02
 {
     public class Journal
     {
-        private List<Entry> entries;  // A list to store all the journal entries
+        private List<Entry> entries;  // A list to store all the journal entries.
 
         public Journal()
         {

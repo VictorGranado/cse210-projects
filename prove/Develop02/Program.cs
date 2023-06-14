@@ -4,7 +4,7 @@ namespace Develop02
 {
     public class Program
     {
-        static Journal journal = new Journal();  // Create an instance of the Journal class
+        static Journal journal = new Journal();  // Create an instance of the Journal class.
 
         static void Main(string[] args)
         {
