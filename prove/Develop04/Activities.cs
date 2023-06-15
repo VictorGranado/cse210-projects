@@ -10,11 +10,13 @@ namespace Develop04
 
         public void LoadSpinner(int duration = 5)
         {
+            // Set the start time and the future time based on the given duration
             DateTime startTime = DateTime.Now;
             DateTime futureTime = startTime.AddSeconds(duration);
 
             DateTime currentTime = DateTime.Now;
 
+            // Keep looping until the current time reaches the future time
             while (currentTime < futureTime)
             {
                 Console.Write("|"); // Add |
@@ -65,3 +67,4 @@ namespace Develop04
         }
     }
 }
+

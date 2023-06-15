@@ -7,14 +7,18 @@ namespace Develop04
     {
         public override void StartActivity()
         {
+            // Display the start message for the breathing activity
             StartMessage(duration);
-            
+
             Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
             LoadSpinner(5);
             Console.WriteLine();
 
+            // Calculate the number of breath cycles based on the duration
             int breathCount = duration / 8;
             int breathIndex = 0;
+
+            // Perform the breathing cycles
             while (breathIndex < breathCount)
             {
                 Console.WriteLine("Breathe in...");
@@ -25,7 +29,11 @@ namespace Develop04
             }
 
             Console.Clear();
+
+            // Display the end message for the breathing activity
             EndMessage(duration);
+
+            // Log the activity data
             LogData("Breathing Activity", duration);
         }
 
@@ -51,4 +59,5 @@ namespace Develop04
         }
     }
 }
+
 
