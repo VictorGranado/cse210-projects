@@ -8,6 +8,44 @@ namespace Develop04
         protected internal int duration;
         protected CancellationTokenSource cancellationTokenSource;
 
+        public void LoadSpinner(int duration = 5)
+        {
+            DateTime startTime = DateTime.Now;
+            DateTime futureTime = startTime.AddSeconds(duration);
+
+            DateTime currentTime = DateTime.Now;
+
+            while (currentTime < futureTime)
+            {
+                Console.Write("|"); // Add |
+
+                currentTime = DateTime.Now;
+
+                Thread.Sleep(400);
+
+                Console.Write("|"); // Add |
+
+                currentTime = DateTime.Now;
+
+                Thread.Sleep(400);
+
+                Console.Write("|"); // Add |
+
+                currentTime = DateTime.Now;
+
+                Thread.Sleep(400);
+
+                Console.Write("\b \b"); // Remove |
+                Console.Write("\b \b"); // Remove |
+                Console.Write("\b \b"); // Remove |
+
+                currentTime = DateTime.Now;
+
+                Thread.Sleep(400);
+            }
+
+        }
+
         public abstract void StartActivity();
 
         protected abstract void StartMessage(int duration);

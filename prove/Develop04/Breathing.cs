@@ -8,9 +8,9 @@ namespace Develop04
         public override void StartActivity()
         {
             StartMessage(duration);
-
+            
             Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine();
 
             int breathCount = duration / 8;
@@ -33,7 +33,7 @@ namespace Develop04
         {
             Console.WriteLine("Duration: " + duration + " seconds");
             Console.WriteLine("Prepare to begin...");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
@@ -44,7 +44,7 @@ namespace Develop04
             Console.WriteLine("--- Breathing Activity ---");
             Console.WriteLine("Great job! You have completed the activity.");
             Console.WriteLine("Duration: " + duration + " seconds");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();

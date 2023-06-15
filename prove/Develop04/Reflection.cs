@@ -37,7 +37,7 @@ namespace Develop04
             StartMessage(duration);
 
             Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine();
 
             Random random = new Random();
@@ -65,7 +65,7 @@ namespace Develop04
         {
             Console.WriteLine("Duration: " + duration + " seconds");
             Console.WriteLine("Prepare to begin...");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
@@ -76,7 +76,7 @@ namespace Develop04
             Console.WriteLine("--- Reflection Activity ---");
             Console.WriteLine("Great job! You have completed the activity.");
             Console.WriteLine("Duration: " + duration + " seconds");
-            Thread.Sleep(5000);
+            LoadSpinner(5);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();

@@ -30,7 +30,7 @@ namespace Develop04
         StartMessage(duration);
 
         Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-        Thread.Sleep(5000);
+        LoadSpinner(5);
         Console.WriteLine();
 
         Console.WriteLine("Prompt: " + SelectRandomPrompt());
@@ -54,7 +54,7 @@ namespace Develop04
     {
         Console.WriteLine("Duration: " + duration + " seconds");
         Console.WriteLine("Prepare to begin...");
-        Thread.Sleep(5000);
+        LoadSpinner(5);
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
         Console.Clear();
@@ -65,7 +65,7 @@ namespace Develop04
         Console.WriteLine("--- Listing Activity ---");
         Console.WriteLine("Great job! You have completed the activity.");
         Console.WriteLine("Number of items listed: " + items.Count);
-        Thread.Sleep(5000);
+        LoadSpinner(5);
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
         Console.Clear();
