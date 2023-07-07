@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Develop05
 {
@@ -93,14 +94,62 @@ namespace Develop05
 
         private static void SaveGoals()
         {
-            // Implement the logic to save goals to a file
-            Console.WriteLine("Goals saved.");
+            Console.Write("Enter the file name to save goals: ");
+            string fileName = Console.ReadLine();
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                    foreach (Goal goal in goals)
+                    {
+                        writer.WriteLine(goal.Serialize());
+                    }
+                }
+
+                Console.WriteLine("Goals saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred while saving goals: " + ex.Message);
+            }
         }
 
         private static void LoadGoals()
         {
-            // Implement the logic to load goals from a file
-            Console.WriteLine("Goals loaded.");
+            Console.Write("Enter the file name to load goals: ");
+            string fileName = Console.ReadLine();
+
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    goals.Clear();
+
+                    using (StreamReader reader = new StreamReader(fileName))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            Goal goal = Goal.Deserialize(line);
+                            if (goal != null)
+                            {
+                                goals.Add(goal);
+                            }
+                        }
+                    }
+
+                    Console.WriteLine("Goals loaded successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("File not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred while loading goals: " + ex.Message);
+            }
         }
 
         private static void SeeCurrentGoals()
@@ -149,5 +198,4 @@ namespace Develop05
             Console.WriteLine("Goal completed! Points added to your score.");
         }
     }
- 
 }
