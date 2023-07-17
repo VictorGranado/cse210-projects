@@ -91,7 +91,7 @@ class Program
         for (int i = 0; i < 4; i++)
         {
             Console.Write($"Enter income for week {i + 1}: ");
-            income[i] = decimal.Parse(Console.ReadLine());
+            
 
             Console.Write($"Enter expenses for week {i + 1}: ");
             expenses[i] = decimal.Parse(Console.ReadLine());
@@ -308,13 +308,13 @@ class Program
         Console.Write("Enter the file name to save: ");
         string fileName = Console.ReadLine();
 
-        using (StreamWriter writer = new StreamWriter(fileName))
+        //using (StreamWriter writer = new StreamWriter(fileName))
+        //{
+        foreach (FinancialReport report in reports)
         {
-            foreach (FinancialReport report in reports)
-            {
-                report.SaveToCSV(writer);
-            }
+            report.SaveToCSV(fileName);
         }
+        //}
 
         Console.WriteLine("Reports saved successfully.");
     }
