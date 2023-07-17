@@ -1,47 +1,50 @@
 using System;
 
-class DisplayInSheets : FinancialReport
+namespace FinalProject
 {
-    private FinancialReport[] reports;
-
-    public DisplayInSheets(FinancialReport[] reports)
+    class DisplayInSheets : FinancialReport
     {
-        this.reports = reports;
-    }
+        private FinancialReport[] reports;
 
-    public override void GenerateReport()
-    {
-        Console.WriteLine("Displaying Reports in Spreadsheet Format");
-        Console.WriteLine("---------------------------------------");
-
-        foreach (FinancialReport report in reports)
+        public DisplayInSheets(FinancialReport[] reports)
         {
-            Console.WriteLine();
-            report.GenerateReport();
+            this.reports = reports;
         }
-    }
 
-    public override void SaveToCSV(string fileName)
-    {
-        Console.WriteLine("Saving Reports to CSV");
-        Console.WriteLine("---------------------");
-
-        foreach (FinancialReport report in reports)
+        public override void GenerateReport()
         {
-            Console.WriteLine();
-            report.SaveToCSV(fileName);
+            Console.WriteLine("Displaying Reports in Spreadsheet Format");
+            Console.WriteLine("---------------------------------------");
+
+            foreach (FinancialReport report in reports)
+            {
+                Console.WriteLine();
+                report.GenerateReport();
+            }
         }
-    }
 
-    public override void LoadFromCSV(string fileName)
-    {
-        Console.WriteLine("Loading Reports from CSV");
-        Console.WriteLine("------------------------");
-
-        foreach (FinancialReport report in reports)
+        public override void SaveToCSV(string fileName)
         {
-            Console.WriteLine();
-            report.LoadFromCSV(fileName);
+            Console.WriteLine("Saving Reports to CSV");
+            Console.WriteLine("---------------------");
+
+            foreach (FinancialReport report in reports)
+            {
+                Console.WriteLine();
+                report.SaveToCSV(fileName);
+            }
+        }
+
+        public override void LoadFromCSV(string fileName)
+        {
+            Console.WriteLine("Loading Reports from CSV");
+            Console.WriteLine("------------------------");
+
+            foreach (FinancialReport report in reports)
+            {
+                Console.WriteLine();
+                report.LoadFromCSV(fileName);
+            }
         }
     }
 }

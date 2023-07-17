@@ -1,13 +1,16 @@
 using System;
 
-abstract class FinancialReport
+namespace FinalProject
 {
-    public abstract void GenerateReport();
-    public abstract void SaveToCSV(string fileName);
-    public abstract void LoadFromCSV(string fileName);
-
-    internal void SaveToCSV(StreamWriter writer)
+    abstract class FinancialReport
     {
-        throw new NotImplementedException();
+        public abstract void GenerateReport();
+        public abstract void SaveToCSV(string fileName);
+        public abstract void LoadFromCSV(string fileName);
+
+        internal void SaveToCSV(StreamWriter writer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,54 +1,57 @@
 using System;
 using System.IO;
 
-class SaveAndLoad : FinancialReport
+namespace FinalProject
 {
-    private string reportData;
-
-    public SaveAndLoad(string data)
+    class SaveAndLoad : FinancialReport
     {
-        reportData = data;
-    }
+        private string reportData;
 
-    public override void GenerateReport()
-    {
-        Console.WriteLine("Save and Load Report Data");
-        Console.WriteLine("-------------------------");
-
-        // Code for saving and loading report data
-    
-    }
-
-    public override void SaveToCSV(string fileName)
-    {
-        try
+        public SaveAndLoad(string data)
         {
-            File.WriteAllText(fileName, reportData);
-            Console.WriteLine($"Report data saved to {fileName} successfully.");
+            reportData = data;
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error saving the report data: {ex.Message}");
-        }
-    }
 
-    public override void LoadFromCSV(string fileName)
-    {
-        try
+        public override void GenerateReport()
         {
-            if (File.Exists(fileName))
+            Console.WriteLine("Save and Load Report Data");
+            Console.WriteLine("-------------------------");
+
+            // Code for saving and loading report data
+        
+        }
+
+        public override void SaveToCSV(string fileName)
+        {
+            try
             {
-                reportData = File.ReadAllText(fileName);
-                Console.WriteLine($"Report data loaded from {fileName} successfully.");
+                File.WriteAllText(fileName, reportData);
+                Console.WriteLine($"Report data saved to {fileName} successfully.");
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine($"File {fileName} does not exist.");
+                Console.WriteLine($"Error saving the report data: {ex.Message}");
             }
         }
-        catch (Exception ex)
+
+        public override void LoadFromCSV(string fileName)
         {
-            Console.WriteLine($"Error loading the report data: {ex.Message}");
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    reportData = File.ReadAllText(fileName);
+                    Console.WriteLine($"Report data loaded from {fileName} successfully.");
+                }
+                else
+                {
+                    Console.WriteLine($"File {fileName} does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading the report data: {ex.Message}");
+            }
         }
     }
 }
